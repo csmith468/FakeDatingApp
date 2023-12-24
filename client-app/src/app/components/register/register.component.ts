@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { AccountService } from '../_services/account.service';
+import { AccountService } from '../../other/_services/account.service';
 
 @Component({
   selector: 'app-register',
