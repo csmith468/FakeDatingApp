@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from '../_services/account.service';
 import { Observable, of } from 'rxjs';
+import { User } from '../_models/user';
 
 @Component({
   selector: 'app-nav',
@@ -17,11 +18,16 @@ export class NavComponent implements OnInit {
 
   login() {
     this.accountService.login(this.model).subscribe({
+      // http request auto completes so no need to unsubscribe
       next: response => {
         console.log(response);
       },
       error: error => console.log(error) 
     })
+  }
+
+  logout() {
+    this.accountService.logout();
   }
 
 }
