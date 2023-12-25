@@ -13,6 +13,8 @@ namespace API.Extensions {
             services.AddCors();
             // Set up creating tokens for logging in
             services.AddScoped<ITokenService, TokenService>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             return services;
         }
