@@ -1,0 +1,54 @@
+<div class="card mb-4" *ngIf="member">
+    <div class="card-img-wrapper">
+        <img src="{{member.photoUrl || '/assets/user.png'}}" alt="{{member.knownAs}}" class="card-img-top">
+        <ul class="list-inline member-icons animate text-center">
+          <button routerLink="/members/{{member.userName}}" class="btn btn-info"><i class="fa fa-user"></i></button>
+          <button class="btn btn-secondary"><i class="fa fa-heart"></i></button>
+          <button class="btn btn-success"><i class="fa fa-envelope"></i></button>
+        </ul>
+    </div>
+    <div class="card body p-1">
+        <h6 class="card-title text-center mb-1">
+            <i class="fa fa-user me-2"></i>
+            {{member.knownAs}}
+        </h6>
+        <p class="card-text text-muted text-center">{{member.city}}, {{member.country}}</p>
+        <ul class="list-inline text-center">
+          <span class="badge badge-info">Age: {{member.age}}</span>
+          <span class="badge badge-secondary">{{member.gender}}</span>
+        </ul>
+    </div>
+</div>
+
+
+<!-- <div class="card mb-4" *ngIf="member">
+    <h5 class="card-header">{{member.knownAs}}</h5> 
+    <div class="card-body">
+      <h6 class="card-text text-muted">Age: {{member.age}}, {{member.gender}}</h6>
+    </div>
+    <div class="card-img-wrapper">
+        <img style="width: 100%; display: block;" src="{{member.photoUrl}}" alt="{{member.knownAs}}">
+        <ul class="list-inline member-icons animate text-center">
+          <li class="list-inline item">
+            <button class="btn btn-info"><i class="fa fa-user"></i></button>
+            <button class="btn btn-secondary"><i class="fa fa-heart"></i></button>
+            <button class="btn btn-success"><i class="fa fa-envelope"></i></button>
+          </li>
+        </ul>
+    </div>
+    <div class="card-body">
+        <p class="card-text text-muted text-center">{{member.city}}, {{member.country}}</p>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Cras justo odio</li>
+      <li class="list-group-item">Dapibus ac facilisis in</li>
+      <li class="list-group-item">Vestibulum at eros</li>
+    </ul>
+    <div class="card-body">
+      <a href="#" class="card-link">Card link</a>
+      <a href="#" class="card-link">Another link</a>
+    </div>
+    <div class="card-footer text-muted">
+      {{member.lastActive}}
+    </div>
+  </div> -->
