@@ -38,9 +38,7 @@ export class MemberListComponent implements OnInit {
 
   applyFilters() {
     if (this.userParams) {
-      // console.log(this.userParams);
       this.userParams.pageNumber = 1;
-      // console.log(this.userParams);
       this.memberService.setUserParams(this.userParams);
     }
     this.loadMembers();
@@ -48,7 +46,6 @@ export class MemberListComponent implements OnInit {
 
   loadMembers() {
     if (this.userParams) {
-      console.log(this.userParams);
       this.memberService.setUserParams(this.userParams);
       this.memberService.getMembers(this.userParams).subscribe({
         next: response => {
