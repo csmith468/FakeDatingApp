@@ -16,7 +16,7 @@
         />
         <div class="card-body">
           <div>
-            <strong>Location: </strong>
+            <strong>Location: </strong> 
             <p>{{ member.city }}, {{ member.country }}</p>
           </div>
           <div>
@@ -25,11 +25,11 @@
           </div>
           <div>
             <strong>Last Active: </strong>
-            <p>{{ member.lastActive }}</p>
+            <p>{{member.lastActive + 'Z' | timeago}}</p>
           </div>
           <div>
             <strong>Member Since: </strong>
-            <p>{{ member.created }}</p>
+            <p>{{member.created | date:'MMM dd, YYYY'}}</p>
           </div>
           <div class="card-footer">
             <button type="submit" form="editForm" [disabled]="!editForm.dirty" class="btn btn-success col-12">Save Changes</button>

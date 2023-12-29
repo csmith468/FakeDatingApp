@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, take } from 'rxjs';
 import { Member } from 'src/app/helpers/models/member';
 import { Pagination } from 'src/app/helpers/models/pagination';
+import { User } from 'src/app/helpers/models/user';
+import { UserParams } from 'src/app/helpers/models/userParams';
+import { AccountService } from 'src/app/helpers/services/account.service';
 import { MembersService } from 'src/app/helpers/services/members.service';
 
 @Component({
@@ -13,30 +16,61 @@ export class MemberListComponent implements OnInit {
   // members$: Observable<Member[]> | undefined;
   members: Member[] = [];
   pagination: Pagination | undefined;
-  pageNumber = 1;
-  pageSize = 5;
+  userParams: UserParams | undefined;
+  genderList = [{value: 'any', display: 'Any'},
+                {value: 'male', display: 'Male'}, 
+                {value: 'female', display: 'Female'},
+              ];
+  orderList = [{value: 'lastActive', display: 'Last Active'}, 
+              {value: 'created', display: 'Account Created'},
+              {value: 'ageDesc', display: 'Oldest'},
+              {value: 'ageAsc', display: 'Youngest'}
+            ];
 
-  constructor(private memberService: MembersService) { }
+  constructor(private memberService: MembersService) {
+    this.userParams = this.memberService.getUserParams();
+   }
 
   ngOnInit(): void {
     // this.members$ = this.memberService.getMembers();
     this.loadMembers();
   }
 
+  applyFilters() {
+    if (this.userParams) {
+      // console.log(this.userParams);
+      this.userParams.pageNumber = 1;
+      // console.log(this.userParams);
+      this.memberService.setUserParams(this.userParams);
+    }
+    this.loadMembers();
+  }
+
   loadMembers() {
-    this.memberService.getMembers(this.pageNumber, this.pageSize).subscribe({
-      next: response => {
-        if (response.result && response.pagination) {
-          this.members = response.result;
-          this.pagination = response.pagination;
+    if (this.userParams) {
+      console.log(this.userParams);
+      this.memberService.setUserParams(this.userParams);
+      this.memberService.getMembers(this.userParams).subscribe({
+        next: response => {
+          if (response.result && response.pagination) {
+            this.members = response.result;
+            this.pagination = response.pagination;
+          }
         }
-      }
-    })
+      })
+    }
+    
+  }
+
+  resetFilters() {
+    this.userParams = this.memberService.resetUserParams();
+    this.loadMembers();
   }
 
   pageChanged(event: any) {
-    if (this.pageNumber !== event.page) {
-      this.pageNumber = event.page;
+    if (this.userParams && this.userParams.pageNumber !== event.page) {
+      this.userParams.pageNumber = event.page;
+      this.memberService.setUserParams(this.userParams);
       this.loadMembers();
     }
   }

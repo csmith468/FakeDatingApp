@@ -8,11 +8,12 @@
         </ul>
     </div>
     <div class="card body p-1">
-        <h6 class="card-title text-center mb-1">{{member.knownAs}}</h6>
+        <h6 class="card-title text-center mb-1">{{member.knownAs}} ({{member.age}})</h6>
         <p class="card-text text-muted text-center">{{member.city}}, {{member.country}}</p>
         <ul class="list-inline text-center">
-          <span class="badge badge-info">Age: {{member.age}}</span>
-          <span class="badge badge-secondary">{{member.gender}}</span>
+          <span class="badge badge-info mr-1" *ngIf="member.gender == 'male'">{{member.gender}}</span>
+          <span class="badge badge-secondary mr-1" *ngIf="member.gender == 'female'">{{member.gender}}</span>
+          <!-- <span class="badge badge-secondary ml-1">{{member.gender}}</span> -->
         </ul>
     </div>
 </div>
