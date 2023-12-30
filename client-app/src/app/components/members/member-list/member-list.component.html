@@ -22,8 +22,8 @@
         <option *ngFor="let gender of genderList" [value]="gender.value">{{gender.display}}</option>
       </select>
     </div>
-    <button class="btn btn-info" type="submit" style="font-size: small;">Apply Filters</button>
-    <button (click)="resetFilters()" class="btn btn-danger ms-1"  style="font-size: small;" type="submit">Reset Filters</button>
+    <button class="btn btn-info" type="submit" style="font-size: small;">Apply</button>
+    <button (click)="resetFilters()" class="btn btn-danger ms-1"  style="font-size: small;" type="submit">Reset</button>
 
 
     <div class="col">
@@ -36,7 +36,7 @@
           (click)="applyFilters()"
           [(ngModel)]="userParams.orderBy"
           btnRadio="lastActive"
-        >Last Active</button>
+        >Active</button>
         <!-- <button   
           type="button"
           class="btn btn-secondary" 
