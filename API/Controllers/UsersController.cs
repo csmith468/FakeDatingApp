@@ -17,26 +17,28 @@ namespace API.Controllers
         private readonly IUserRepository _userRepository;
         private readonly IMapper _mapper;
         private readonly IPhotoService _photoService;
+        private readonly IUnitOfWork _uow;
 
-        public UsersController(IUserRepository userRepository, IMapper mapper, IPhotoService photoService) {
+        public UsersController(IUnitOfWork uow, IMapper mapper, IPhotoService photoService) {
+            _uow = uow;
             _photoService = photoService;
             _mapper = mapper;
-            _userRepository = userRepository;
         }
 
         [HttpGet]
         public async Task<ActionResult<PagedList<MemberDto>>> GetUsers([FromQuery]UserParams userParams) {
-            var currentUser = await _userRepository.GetUserByUsernameAsync(User.GetUsername());
-            userParams.CurrentUsername = currentUser.UserName;
+            var gender = await _uow.UserRepository.GetUserGender(User.GetUsername());
+            userParams.CurrentUsername = User.GetUsername();
 
-            if (string.IsNullOrEmpty(userParams.Gender)) {
-                // userParams.Gender = currentUser.Gender == "male" ? "female" : "male";
+            if (string.IsNullOrEmpty(userParams.Gender))
+                // userParams.Gender = gender == "male" ? "female" : "male";
                 userParams.Gender = "any";
-            }
 
-            var users = await _userRepository.GetMembersAsync(userParams);
-            Response.AddPaginationHeader(new PaginationHeader(
-                users.CurrentPage, users.PageSize, users.TotalCount, users.TotalPages));
+            var users = await _uow.UserRepository.GetMembersAsync(userParams);
+
+            Response.AddPaginationHeader(new PaginationHeader(users.CurrentPage, users.PageSize,
+                users.TotalCount, users.TotalPages));
+
             return Ok(users);
         }
 
@@ -51,7 +53,7 @@ namespace API.Controllers
             if (user == null) return NotFound();
 
             _mapper.Map(memberUpdateDto, user);
-            if (await _userRepository.SaveAllAsync()) return NoContent();
+            if (await _uow.Complete()) return NoContent();
             
             return BadRequest("Failed to update user.");
         }
@@ -72,7 +74,7 @@ namespace API.Controllers
             if (user.Photos.Count == 0) photo.IsMain = true;
 
             user.Photos.Add(photo);
-            if (await _userRepository.SaveAllAsync()) {
+            if (await _uow.Complete()) {
                 return CreatedAtAction(
                     nameof(GetUser), 
                     new {username = user.UserName},
@@ -96,7 +98,7 @@ namespace API.Controllers
             if (currentMain != null) currentMain.IsMain = false;
             photo.IsMain = true;
 
-            if (await _userRepository.SaveAllAsync()) return NoContent();
+            if (await _uow.Complete()) return NoContent();
             return BadRequest("Problem setting the main photo.");
         }
 
@@ -114,7 +116,7 @@ namespace API.Controllers
             }
 
             user.Photos.Remove(photo); 
-            if (await _userRepository.SaveAllAsync()) return Ok();
+            if (await _uow.Complete()) return Ok();
             return BadRequest("Problem deleting photo.");
         }
     }
