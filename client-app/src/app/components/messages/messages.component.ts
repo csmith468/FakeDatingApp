@@ -34,6 +34,32 @@ export class MessagesComponent implements OnInit{
     });
   }
 
+
+  // initialLoadMessages() {
+  //   this.loading = true;
+  //   this.messageService.getMessages(this.pageNumber, this.pageSize, this.container).subscribe({
+  //     next: response => {
+  //       this.messages = response.result;
+  //       this.pagination = response.pagination;
+  //       this.loading = false;
+  //     }
+  //   });
+  //   console.log(this.messages);
+  //   // if there are no unread messages, start on inbox instead
+  //   if ((this.messages?.length == 0 || this.messages == undefined) && this.container == 'Unread') {
+  //     this.container = 'Inbox';
+  //     this.loading = true;
+  //     this.messageService.getMessages(this.pageNumber, this.pageSize, this.container).subscribe({
+  //       next: response => {
+  //         this.messages = response.result;
+  //         this.pagination = response.pagination;
+  //         this.loading = false;
+  //       }
+  //     });
+  //     console.log(this.messages);
+  //   }
+  // }
+
   deleteMessage(id: number) {
     console.log(id);
     this.messageService.deleteMessage(id).subscribe({

@@ -37,12 +37,13 @@
     <table class="table table-hover" style="cursor: pointer;">
         <thead>
             <tr>
+                <th style="width:2%"></th>
                 <th style="width:40%">Message</th>
                 <th *ngIf="container === 'Outbox'" style="width:20%">To</th>
                 <th *ngIf="container !== 'Outbox'" style="width:20%">From</th>
                 <th *ngIf="container === 'Outbox'" style="width:20%">Sent</th>
                 <th *ngIf="container !== 'Outbox'" style="width:20%">Received</th>
-                <th style="width:20%"></th>
+                <th style="width:18%"></th>
             </tr>
         </thead>
         <tbody class="align-middle">
@@ -52,6 +53,11 @@
                 : '/members/' + message.senderUsername}}"
                 [queryParams]="{tab: 'Messages'}"
             >
+            <td>
+              <small>
+                <i class="fa fa-circle text-danger" *ngIf="!message.dateRead"></i>
+              </small>
+            </td>
             <td>{{message.content}}</td>
             <td>
                 <div *ngIf="container === 'Outbox'">

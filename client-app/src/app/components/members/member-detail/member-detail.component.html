@@ -21,7 +21,7 @@
         </div>
         <div>
           <strong>Last Active: </strong>
-          <p>{{member.lastActive + 'Z' | timeago}}</p>
+          <p>{{member.lastActive | timeago}}</p>
         </div>
         <div>
           <strong>Member Since: </strong>
@@ -52,7 +52,7 @@
         <gallery *ngIf="photoTab.active" [items]="images" class="gallery"></gallery>
       </tab>
       <tab heading="Messages" (selectTab)="onTabActivated($event)">
-        <app-message-threads [messages]="messages" [username]="member.userName"></app-message-threads>
+        <app-message-threads [username]="member.userName"></app-message-threads>
       </tab>
     </tabset>
   </div>
