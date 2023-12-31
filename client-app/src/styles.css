@@ -28,11 +28,6 @@
   position: relative;
 }
 
-.member-tabset > .nav-tabs > li.active > a {
-  border: 0 !important;
-  color: #290608;
-}
-
 .member-tabset > .nav-tabs > li.active > a > i {
   color: #404040;
 }

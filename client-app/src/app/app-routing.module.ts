@@ -13,6 +13,8 @@ import { MemberEditComponent } from './components/members/member-edit/member-edi
 import { preventUnsavedChangesGuard } from './helpers/guards/prevent-unsaved-changes.guard';
 import { RegisterComponent } from './components/register/register.component';
 import { memberDetailedResolver } from './helpers/resolvers/member-detailed.resolver';
+import { AdminPanelComponent } from './components/admin/admin-panel/admin-panel.component';
+import { adminGuard } from './helpers/guards/admin.guard';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -24,7 +26,8 @@ const routes: Routes = [
       {path: 'members/:username', component: MemberDetailComponent, resolve: {member: memberDetailedResolver}},
       {path: 'member/edit', component: MemberEditComponent, canDeactivate: [preventUnsavedChangesGuard]},
       {path: 'lists', component: ListsComponent},
-      {path: 'messages', component: MessagesComponent}
+      {path: 'messages', component: MessagesComponent},
+      {path: 'admin', component: AdminPanelComponent, canActivate: [adminGuard]},
     ]
   },
   {path: 'register', component: RegisterComponent},
