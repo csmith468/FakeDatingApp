@@ -9,6 +9,7 @@ import { MembersService } from 'src/app/helpers/services/members.service';
 import { MessageThreadsComponent } from '../message-threads/message-threads.component';
 import { MessageService } from 'src/app/helpers/services/message.service';
 import { Message } from 'src/app/helpers/models/message';
+import { PresenceService } from 'src/app/helpers/services/presence.service';
 
 @Component({
   selector: 'app-member-detail',
@@ -30,7 +31,7 @@ export class MemberDetailComponent implements OnInit{
   messages: Message[] = [];
 
   constructor(private memberService: MembersService, private route: ActivatedRoute,
-    private messageService: MessageService) { }
+    private messageService: MessageService, public presenceService: PresenceService) { }
 
   ngOnInit(): void {
     this.route.data.subscribe({

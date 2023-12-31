@@ -3,6 +3,7 @@ using API.Helpers;
 using API.Interfaces;
 using API.Repositories;
 using API.Services;
+using API.SignalR;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Extensions {
@@ -24,6 +25,9 @@ namespace API.Extensions {
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.Configure<CloudinarySettings>(config.GetSection("CloudinarySettings"));
+
+            services.AddSignalR();
+            services.AddSingleton<PresenceTracker>(); // won't be destroyed after http request is finished
         
             return services;
         }
