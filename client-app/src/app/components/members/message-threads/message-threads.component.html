@@ -1,106 +1,109 @@
 <div class="" id="messages-main">
-  <div class="ms-body">
+  <div
+    class="ms-body ml-3 pt-2"
+    #scrollMe
+    style="overflow: scroll; height: 550px"
+    [scrollTop]="scrollMe.scrollHeight"
+  >
     <div *ngIf="(messageService.messageThread$ | async)?.length === 0">
       No messages yet... say hi by using the message box below!
     </div>
 
-    <div 
-      #scrollMe 
-      style="overflow: scroll; height: 600px;"
-      [scrollTop]="scrollMe.scrollHeight"
-    >
-      <div *ngIf="(messageService.messageThread$ | async)!.length > 0">
-        <div *ngFor="let message of (messageService.messageThread$ | async)" class="clearfix">
-          <div
-            *ngIf="message.senderUsername === username"
-            class="message-feed left"
-          >
-            <div class="pull-left">
-              <img
-                src="{{ message.senderPhotoUrl || './assets/user.png' }}"
-                alt="Image of Sender"
-                class="rounded-circle img-avatar"
-              />
-            </div>
-            <div class="media-body">
-              <div class="mf-content">{{ message.content }}</div>
-              <small class="mf-date">
-                <i
-                  *ngIf="message.dateRead && message.senderUsername === username"
-                  class="fa fa-check-circle-o success"
-                  style="color: #a1d354"
-                  title="(read {{ message.dateRead | timeago }})"
-                >
-                </i>
-                <i
-                  *ngIf="!message.dateRead && message.senderUsername === username"
-                  class="fa fa-clock-o"
-                  title="(unread)"
-                ></i>
-                {{ message.messageSent | timeago }}
-              </small>
-            </div>
+    <div *ngIf="(messageService.messageThread$ | async)!.length > 0">
+      <div
+        *ngFor="let message of messageService.messageThread$ | async"
+        class="clearfix"
+      >
+        <div
+          *ngIf="message.senderUsername === username"
+          class="message-feed left"
+        >
+          <div class="pull-left">
+            <img
+              src="{{ message.senderPhotoUrl || './assets/user.png' }}"
+              alt="Image of Sender"
+              class="rounded-circle img-avatar"
+            />
           </div>
+          <div class="media-body">
+            <div class="mf-content">{{ message.content }}</div>
+            <small class="mf-date">
+              <i
+                *ngIf="message.dateRead && message.senderUsername === username"
+                class="fa fa-check-circle-o success"
+                style="color: #a1d354"
+                title="(read {{ message.dateRead | timeago }})"
+              >
+              </i>
+              <i
+                *ngIf="!message.dateRead && message.senderUsername === username"
+                class="fa fa-clock-o"
+                title="(unread)"
+              ></i>
+              {{ message.messageSent | timeago }}
+            </small>
+          </div>
+        </div>
 
-          <div
-            *ngIf="message.senderUsername !== username"
-            class="message-feed right"
-          >
-            <div class="pull-right">
-              <img
-                src="{{ message.senderPhotoUrl || './assets/user.png' }}"
-                alt="Image of Sender"
-                class="rounded-circle img-avatar"
-              />
-            </div>
-            <div class="media-body">
-              <div class="mf-content">{{ message.content }}</div>
-              <small class="mf-date">
-                <i
-                  *ngIf="message.dateRead && message.senderUsername !== username"
-                  class="fa fa-check-circle-o success"
-                  style="color: #a1d354"
-                  title="(read {{ message.dateRead | timeago }})"
-                >
-                </i>
-                <i
-                  *ngIf="!message.dateRead && message.senderUsername !== username"
-                  class="fa fa-clock-o"
-                  title="(unread)"
-                ></i>
-                {{ message.messageSent | timeago }}
-              </small>
-            </div>
+        <div
+          *ngIf="message.senderUsername !== username"
+          class="message-feed right"
+        >
+          <div class="pull-right">
+            <img
+              src="{{ message.senderPhotoUrl || './assets/user.png' }}"
+              alt="Image of Sender"
+              class="rounded-circle img-avatar"
+            />
+          </div>
+          <div class="media-body">
+            <div class="mf-content">{{ message.content }}</div>
+            <small class="mf-date">
+              <i
+                *ngIf="message.dateRead && message.senderUsername !== username"
+                class="fa fa-check-circle-o success"
+                style="color: #a1d354"
+                title="(read {{ message.dateRead | timeago }})"
+              >
+              </i>
+              <i
+                *ngIf="!message.dateRead && message.senderUsername !== username"
+                class="fa fa-clock-o"
+                title="(unread)"
+              ></i>
+              {{ message.messageSent | timeago }}
+            </small>
           </div>
         </div>
       </div>
     </div>
-    <!-- <div class="msb-reply">
+  </div>
+  <!-- <div class="msb-reply">
                 <textarea placeholder="What's on your mind..."></textarea>
                 <button><i class="fa fa-paper-plane"></i></button>
             </div> -->
-    <div class="card-footer">
-      <form #messageForm="ngForm" (ngSubmit)="sendMessage()" autocomplete="off">
-        <div class="input-group">
-          <input
-            name="messageContent"
-            required
-            [(ngModel)]="messageContent"
-            type="text"
-            class="form-control input-sm"
-            placeholder="Send a private message..."
-          />
-          <div class="input-group-append">
-            <button
-              class="btn btn-success"
-              type="submit"
-              [disabled]="!messageForm.valid"
-            >
-              <i class="fa fa-paper-plane"></i>
-            </button>
-          </div>
+  <div class="card-footer">
+    <form #messageForm="ngForm" (ngSubmit)="sendMessage()" autocomplete="off">
+      <div class="input-group">
+        <input
+          name="messageContent"
+          required
+          [(ngModel)]="messageContent"
+          type="text"
+          class="form-control input-sm"
+          placeholder="Send a private message..."
+        />
+        <div class="input-group-append">
+          <button
+            class="btn btn-success"
+            type="submit"
+            [disabled]="!messageForm.valid || loading"
+          >
+            <i class="fa fa-paper-plane"></i>
+            <i class="fa fa-spinner fa-spin" *ngIf="loading"></i>
+          </button>
         </div>
-      </form>
-    </div>
+      </div>
+    </form>
   </div>
 </div>

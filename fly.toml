@@ -1,13 +1,18 @@
-# fly.toml app configuration file generated for datingapp-dotnet-angular on 2023-12-31T17:02:28-06:00
+# fly.toml app configuration file generated for fakedatingapp on 2023-12-31T18:32:15-06:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = "datingapp-dotnet-angular"
+app = "fakedatingapp"
 primary_region = "dfw"
 
 [build]
   image = "chapinsmith/datingapp:latest"
+
+[env]
+  ASPNETCORE_URLS="http://+:8080"
+  CloudinarySettings__CloudName="dkckwrtrg"
+  CloudinarySettings__ApiKey="422976576269271"
 
 [http_service]
   internal_port = 8080
