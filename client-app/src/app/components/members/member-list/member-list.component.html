@@ -4,9 +4,8 @@
 
 <div class="container mt-3" *ngIf="userParams">
   <div class="container"></div>
-  <button class="btn btn-info" (click)="changeFilterPanel()">
-    Show Filters
-  </button>
+  <button *ngIf="!filterPanelVisible" class="btn btn-info" (click)="changeFilterPanel()">Show Filters</button>
+  <button *ngIf="filterPanelVisible" class="btn btn-info" (click)="changeFilterPanel()">Hide Filters</button>
   <div class="row pt-2">
     <div class="{{filterPanelSize}}" *ngIf="filterPanelVisible">
       <div class="filter-panel">
