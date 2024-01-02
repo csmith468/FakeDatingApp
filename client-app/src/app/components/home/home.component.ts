@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AccountService } from 'src/app/helpers/services/account.service';
 
 @Component({
   selector: 'app-home',
@@ -6,20 +7,20 @@ import { Component } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  registerMode = false;
+  // registerMode = false;
   users: any;
 
-  constructor() { }
+  constructor(public accountService: AccountService) { }
 
   ngOnInit(): void {
    }
 
-  registerToggle() {
-    this.registerMode = !this.registerMode;
-  }
+  // registerToggle() {
+  //   this.registerMode = !this.registerMode;
+  // }
 
-  cancelRegisterMode(event: boolean) {
-    this.registerMode = event;
-  }
+  // cancelRegisterMode(event: boolean) {
+  //   this.registerMode = event;
+  // }
 
 }

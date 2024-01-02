@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from '../../helpers/services/account.service';
-import { Observable, of } from 'rxjs';
-import { User } from '../../helpers/models/user';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { BreakpointObserver } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-nav',
@@ -12,11 +11,26 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class NavComponent implements OnInit {
   model: any = {}
+  collapseNav = false;
 
   constructor(public accountService: AccountService, private router: Router, 
-    private toastr: ToastrService) { }
+    private toastr: ToastrService, private responsive: BreakpointObserver) { }
 
   ngOnInit(): void {
+    this.responsive.observe(['(max-width: 767px)']).subscribe(
+      result => {
+        if (result.matches) {
+          this.collapseNav = true;
+        }
+      }
+    )
+    this.responsive.observe(['(min-width: 768px)']).subscribe(
+      result => {
+        if (result.matches) {
+          this.collapseNav = false;
+        }
+      }
+    )
   }
 
   login() {

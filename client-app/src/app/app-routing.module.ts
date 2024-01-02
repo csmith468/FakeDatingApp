@@ -15,6 +15,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { memberDetailedResolver } from './helpers/resolvers/member-detailed.resolver';
 import { AdminPanelComponent } from './components/admin/admin-panel/admin-panel.component';
 import { adminGuard } from './helpers/guards/admin.guard';
+import { AboutComponent } from './components/about/about.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -30,6 +31,7 @@ const routes: Routes = [
       {path: 'admin', component: AdminPanelComponent, canActivate: [adminGuard]},
     ]
   },
+  {path: 'about', component: AboutComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'errors', component: TestErrorComponent},
   {path: 'not-found', component: NotFoundComponent},
