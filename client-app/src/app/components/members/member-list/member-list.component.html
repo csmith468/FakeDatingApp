@@ -12,7 +12,7 @@
       <div class="filter-panel">
         <div class="row" style="padding: 10px">
           <section class="mb-3">
-            <h5 class="text-danger ps-3">Sort</h5>
+            <h5 class="text-danger ps-2">Sort</h5>
             <select
               class="form-select"
               (change)="applyFilters()"
@@ -36,7 +36,7 @@
             </select>
           </section>
           <section class="mb-3">
-            <h5 class="text-danger ps-3">Gender</h5>
+            <h5 class="text-danger ps-2">Gender</h5>
             <select
               name="gender"
               class="form-select"
@@ -49,7 +49,7 @@
             </select>
           </section>
           <section class="mb-3">
-            <h5 class="text-danger pl-3">Age Range</h5>
+            <h5 class="text-danger pl-2">Age Range</h5>
             <div class="row">
               <div class="d-flex pb-3">
                 <label class="col-form-label pl-1 pr-2">Min: </label>
@@ -74,9 +74,8 @@
                 />
               </div>
               <div class="pl-3">
-                <button class="btn btn-info col-8" (click)="applyFilters()">
-                  Apply
-                </button>
+                <button class="btn btn-success col-8 mb-2" (click)="applyFilters()">Apply</button>
+                <button (click)="resetFilters()" class="btn btn-danger col-8">Reset</button>
               </div>
             </div>
           </section>
