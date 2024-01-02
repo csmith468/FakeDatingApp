@@ -23,7 +23,7 @@ This fake dating website was built through the following Udemy course: https://w
   - Fly.io
   - Docker Container
   - Github Actions for Continuous Integration/Continuous Deployment
-  - 
+    
 ***What did I add extend from the original course?***
 - **Front-End**
   - Adaptive Layout using Breakpoint Observer
