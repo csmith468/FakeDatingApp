@@ -8,19 +8,25 @@
       </div>
       <div class="dropdown-menu" *dropdownMenu>
         <a class="dropdown-item" routerLink="/about">About</a>
-        <a class="dropdown-item" routerLink="/members">Members</a>
-        <a class="dropdown-item" routerLink="/lists">Lists</a>
-        <a class="dropdown-item" routerLink="/messages">Messages</a>
-        <a class="dropdown-item" routerLink="/errors">Errors</a>
+        <ng-container *ngIf="(accountService.currentUser$ | async) as user">
+          <a class="dropdown-item" routerLink="/members">Members</a>
+          <a class="dropdown-item" routerLink="/lists">Lists</a>
+          <a class="dropdown-item" routerLink="/messages">Messages</a>
+          <a class="dropdown-item" routerLink="/errors">Errors</a>
+        </ng-container>
+        <div *ngIf="!(accountService.currentUser$ | async) as user">
+          <a class="dropdown-item" routerLink="/register">Register</a>
+        </div>
         <a *appHasRole="['Admin', 'Moderator']" class="dropdown-item" routerLink="/admin">Admin</a>
       </div>
     </div>
     <a class="navbar-brand" routerLink="/" routerLinkActive="active">Fake Dating App</a>
       <ul class="navbar-nav me-auto mb-2 mb-md-0" >
-        <ng-container *ngIf="(accountService.currentUser$ | async) && !(collapseNav)">
+        <ng-container *ngIf="!(collapseNav)">
           <li class="nav-item">
             <a class="nav-link" routerLink="/about" routerLinkActive="active">About</a>
           </li>
+        <ng-container *ngIf="(accountService.currentUser$ | async)">
           <li class="nav-item">
             <a class="nav-link" routerLink="/members" routerLinkActive="active">Members</a>
           </li>
@@ -37,6 +43,12 @@
             <a class="nav-link" routerLink="/admin" routerLinkActive="active">Admin</a>
           </li>
         </ng-container>
+        <ng-container *ngIf="!(accountService.currentUser$ | async)">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/register" routerLinkActive="active">Register</a>
+          </li>
+        </ng-container>
+      </ng-container>
       </ul>
       <div class="dropdown" *ngIf="(accountService.currentUser$ | async) as user" dropdown>
         <img src="{{user.photoUrl || './assets/user.png'}}" alt="User Photo" class="img rounded-circle shadow-4-strong">
