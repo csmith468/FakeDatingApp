@@ -6,16 +6,17 @@ This fake dating website was built through the following Udemy course: https://w
 
 ***What was used in this course?***
 - **Front-End**
-  - Angular
+  - Angular (v16)
     - Components, directives, guards, interceptors, interfaces, etc
     - File uploading (images)
   - TypeScript
   - Bootstrap CSS
 - **Back-End**
-  - ASP.NET Core
+  - ASP.NET Core WebAPI (v7)
   - C#
   - REST APIs
   - .NET Entity Framework Core
+  - Automapper
   - SignalR for real-time presence/messaging
   - SQLite → PostgresDB
   - Cloudinary for Image Upload Storage
@@ -23,6 +24,14 @@ This fake dating website was built through the following Udemy course: https://w
   - Fly.io
   - Docker Container
   - Github Actions for Continuous Integration/Continuous Deployment
+- **Features**
+  - Client-side login and registration
+  - Secure routing
+  - Paging, sorting, routing
+  - Live private messaging
+  - Angular template and reactive forms with validation
+  - Photo upload functionality
+  - Bootstrap styling
     
 ***What did I add extend from the original course?***
 - **Front-End**
