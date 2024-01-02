@@ -51,17 +51,17 @@ namespace API.Controllers {
         }
 
 
-        // [Authorize(Policy = "RequiredAdminRole")]
-        // [HttpDelete("delete-account/{username}")]
-        // public async Task<ActionResult> DeleteAccount(string username) {
-        //     var user = await _uow.UserRepository.GetUserByUsernameAsync(username);
+        [Authorize(Policy = "RequiredAdminRole")]
+        [HttpDelete("delete-account/{username}")]
+        public async Task<ActionResult> DeleteAccount(string username) {
+            var user = await _uow.UserRepository.GetUserByUsernameAsync(username);
 
-        //     if (user == null) return NotFound();
+            if (user == null) return NotFound();
 
-        //     _uow.UserRepository.DeleteUser(user);
-        //     if (await _uow.Complete()) return Ok();
-        //     return BadRequest("Problem deleting photo.");
-        // }
+            _uow.UserRepository.DeleteUser(user);
+            if (await _uow.Complete()) return Ok();
+            return BadRequest("Problem deleting photo.");
+        }
 
         [Authorize(Policy = "ModeratePhotoRole")]
         [HttpGet("photos-to-moderate")]
