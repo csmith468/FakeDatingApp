@@ -40,6 +40,7 @@ This fake dating website was built through the following Udemy course: https://w
     - Navigation bar collapses links into menu dropdown, then removes "Welcome" as window size decreases
   - Collapsible filter panel in members list
   - New UI for messaging
+  - Extra client-side password validation during registration
   - Gender tag in members list page
   - Home page shows register or members link depending on if logged in
   - Custom Bootswatch theme
