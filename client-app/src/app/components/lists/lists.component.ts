@@ -1,3 +1,4 @@
+import { BreakpointObserver } from '@angular/cdk/layout';
 import { Component, OnInit } from '@angular/core';
 import { Member } from 'src/app/helpers/models/member';
 import { Pagination } from 'src/app/helpers/models/pagination';
@@ -14,11 +15,24 @@ export class ListsComponent implements OnInit {
   pageNumber = 1;
   pageSize = 8;
   pagination: Pagination | undefined;
+  colsPerMember = 'col-3';
 
-  constructor(private membersService: MembersService) { }
+  constructor(private membersService: MembersService, private responsive: BreakpointObserver) { }
 
   ngOnInit(): void {
     this.loadLikes();
+
+    this.responsive.observe(['(max-width: 600px)', '(min-width: 601px)', '(max-width: 767px)', 
+      '(min-width: 768px)']).subscribe(
+        result => {
+          if (result.breakpoints['(max-width: 600px)']) 
+          this.colsPerMember = 'col-6';
+          if (result.breakpoints['(min-width: 601px)'] && result.breakpoints['(max-width: 767px)']) 
+          this.colsPerMember = 'col-4';
+          if (result.breakpoints['(min-width: 768px)'])
+            this.colsPerMember = 'col-3';
+        }
+      )
   }
 
   loadLikes() {

@@ -19,18 +19,18 @@ export class NavComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.responsive.observe(['(max-width: 433px)', '(min-width: 434px)', '(max-width: 767px)', 
-      '(min-width: 768px)']).subscribe(
+    this.responsive.observe(['(max-width: 433px)', '(min-width: 434px)', '(max-width: 991px)', 
+      '(min-width: 992px)']).subscribe(
         result => {
           if (result.breakpoints['(max-width: 433px)']) {
             this.collapseWelcome = true;
             this.collapseNav = true;
           }
-          if (result.breakpoints['(min-width: 434px)'] && result.breakpoints['(max-width: 767px)']) {
+          if (result.breakpoints['(min-width: 434px)'] && result.breakpoints['(max-width: 991px)']) {
             this.collapseWelcome = false;
             this.collapseNav = true;
           }
-          if (result.breakpoints['(min-width: 768px)']) {
+          if (result.breakpoints['(min-width: 992px)']) {
             this.collapseWelcome = false;
             this.collapseNav = false;
           }

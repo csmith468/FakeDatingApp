@@ -55,7 +55,7 @@
             >
             <td>
               <small>
-                <i class="fa fa-circle text-danger" *ngIf="!message.dateRead"></i>
+                <i class="fa fa-circle text-danger" *ngIf="!message.dateRead && container != 'Outbox'"></i>
               </small>
             </td>
             <td>{{message.content}}</td>

@@ -21,11 +21,12 @@ export class MemberListComponent implements OnInit {
   genderList = [{value: 'any', display: 'Any'},
                 {value: 'male', display: 'Male'}, 
                 {value: 'female', display: 'Female'},
+                {value: 'other', display: 'Other'},
               ];
-  orderList = [{value: 'lastActive', display: 'Last Active'}, 
-              {value: 'created', display: 'Account Created'},
-              {value: 'ageDesc', display: 'Oldest'},
-              {value: 'ageAsc', display: 'Youngest'}
+  orderList = [{value: 'lastActive', display: 'Active'}, 
+              {value: 'created', display: 'Newest'},
+              {value: 'ageDesc', display: 'Age &darr;'},
+              {value: 'ageAsc', display: 'Age &uarr;'}
             ];
 
   // Viewing settings
