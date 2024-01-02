@@ -17,13 +17,10 @@
               (change)="applyFilters()"
               [(ngModel)]="userParams.orderBy"
             >
-            <option *ngFor="let o of orderList" [value]="o.value">
-              {{ o.display }}
-            </option>
-              <!-- <option value="lastActive">Active</option>
+              <option value="lastActive">Active</option>
               <option value="created">Newest</option>
               <option value="ageAsc">Age &uarr;</option>
-              <option value="ageDesc">Age &darr;</option> -->
+              <option value="ageDesc">Age &darr;</option>
               <button
                 style="font-size: small"
                 type="button"
