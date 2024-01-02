@@ -1,0 +1,5 @@
+.filter-panel{
+    border: solid 2px #ffdcdd;
+    border-radius: 5px;
+    border-image-outset: 30px;
+}

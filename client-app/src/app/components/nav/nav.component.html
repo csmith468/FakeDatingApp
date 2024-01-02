@@ -36,7 +36,8 @@
       </ul>
       <div class="dropdown" *ngIf="(accountService.currentUser$ | async) as user" dropdown>
         <img src="{{user.photoUrl || './assets/user.png'}}" alt="User Photo" class="img rounded-circle shadow-4-strong">
-        <a class="dropdown-toggle text-light text-decoration-none ms-2" dropdownToggle>Welcome {{user.knownAs| titlecase}}</a>
+        <a *ngIf="!collapseWelcome" class="dropdown-toggle text-light text-decoration-none ms-2" dropdownToggle>Welcome {{user.knownAs| titlecase}}</a>
+        <a *ngIf="collapseWelcome" class="dropdown-toggle text-light text-decoration-none ms-2" dropdownToggle>{{user.knownAs| titlecase}}</a>
         <div class="dropdown-menu" *dropdownMenu>
           <a class="dropdown-item" routerLink="/member/edit">Edit Profile</a>
           <a class="dropdown-item" (click)="logout()" >Logout</a>

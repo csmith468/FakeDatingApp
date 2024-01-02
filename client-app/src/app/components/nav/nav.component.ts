@@ -12,25 +12,30 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 export class NavComponent implements OnInit {
   model: any = {}
   collapseNav = false;
+  collapseWelcome = false;
 
   constructor(public accountService: AccountService, private router: Router, 
     private toastr: ToastrService, private responsive: BreakpointObserver) { }
 
   ngOnInit(): void {
-    this.responsive.observe(['(max-width: 767px)']).subscribe(
-      result => {
-        if (result.matches) {
-          this.collapseNav = true;
+
+    this.responsive.observe(['(max-width: 433px)', '(min-width: 434px)', '(max-width: 767px)', 
+      '(min-width: 768px)']).subscribe(
+        result => {
+          if (result.breakpoints['(max-width: 433px)']) {
+            this.collapseWelcome = true;
+            this.collapseNav = true;
+          }
+          if (result.breakpoints['(min-width: 434px)'] && result.breakpoints['(max-width: 767px)']) {
+            this.collapseWelcome = false;
+            this.collapseNav = true;
+          }
+          if (result.breakpoints['(min-width: 768px)']) {
+            this.collapseWelcome = false;
+            this.collapseNav = false;
+          }
         }
-      }
-    )
-    this.responsive.observe(['(min-width: 768px)']).subscribe(
-      result => {
-        if (result.matches) {
-          this.collapseNav = false;
-        }
-      }
-    )
+      )
   }
 
   login() {

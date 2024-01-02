@@ -1,13 +1,13 @@
 <div class="row" *ngIf="member">
-    <div class="col-4">
+    <div class="col-5">
         <h1>Your Profile</h1>
     </div>
-    <div class="col-8">
+    <div class="col-7">
         <div class="alert alert-info pb-0" *ngIf="editForm.dirty">
             <p><strong>Information: </strong>You have made changes. Any unsaved changes will be lost.</p>
         </div>
     </div>
-    <div class="col-4">
+    <div class="col-5">
       <div class="card">
         <img
           src="{{ member.photoUrl || './assets/user.png' }}"
@@ -37,7 +37,7 @@
         </div>
       </div>
     </div>
-    <div class="col-8">
+    <div class="col-7">
       <tabset class="member-tabset">
         <tab heading="About {{member.knownAs}}">
             <form #editForm="ngForm" id="editForm" (ngSubmit)="updateMember()">
