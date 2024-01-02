@@ -20,6 +20,11 @@
   <div class="invalid-feedback" *ngIf="control.errors?.['notMatching']">
       Passwords do not match.
   </div>
+  <div class="invalid-feedback" *ngIf="control.errors?.['missingNumber'] 
+    || control.errors?.['missingUpper'] 
+    || control.errors?.['missingLower'] ">
+    Passwords must contain at least one uppercase letter, one lowercase letter, and one number.
+</div>
   <div class="valid-feedback"></div>
   <label for="floatingText">{{label}}</label>
 </div>

@@ -34,7 +34,8 @@ export class RegisterComponent {
       city: ['', Validators.required],
       country: ['', Validators.required],
       password: ['', [
-        Validators.required, Validators.minLength(4), Validators.maxLength(8)]],
+        Validators.required, Validators.minLength(4), Validators.maxLength(8), this.hasNumber(),
+          this.hasUpper(), this.hasLower()]],
       confirmPassword: ['', [Validators.required, this.matchValues('password')]],
     });
     this.registerForm.controls['password'].valueChanges.subscribe({
@@ -45,6 +46,24 @@ export class RegisterComponent {
   matchValues(matchTo: string): ValidatorFn {
     return (control: AbstractControl) => {
       return control.value === control.parent?.get(matchTo)?.value ? null : {notMatching: true}
+    };
+  }
+
+  hasNumber(): ValidatorFn {
+    return (control: AbstractControl) => {
+      return /\d/.test(control.value) ? null : {missingNumber: true}
+    };
+  }
+
+  hasUpper(): ValidatorFn {
+    return (control: AbstractControl) => {
+      return /[A-Z]/.test(control.value) ? null : {missingUpper: true}
+    };
+  }
+
+  hasLower(): ValidatorFn {
+    return (control: AbstractControl) => {
+      return /[a-z]/.test(control.value) ? null : {missingLower: true}
     };
   }
 

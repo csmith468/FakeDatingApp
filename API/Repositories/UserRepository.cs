@@ -73,5 +73,9 @@ namespace API.Data {
                 .Where(x => x.UserName == username)
                 .Select(x => x.Gender).FirstOrDefaultAsync();
         }
+
+        public void DeleteUser(AppUser user) {
+            _context.Users.Remove(user);
+        }
     }
 }

@@ -1,4 +1,5 @@
 using API.Entities;
+using API.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -7,9 +8,11 @@ using Microsoft.EntityFrameworkCore;
 namespace API.Controllers {
     public class AdminController : BaseApiController {
         private readonly UserManager<AppUser> _userManager;
+        private readonly IUnitOfWork _uow;
 
-        public AdminController(UserManager<AppUser> userManager) {
+        public AdminController(UserManager<AppUser> userManager, IUnitOfWork uow) {
             _userManager = userManager;
+            _uow = uow;
         }
 
 
@@ -45,6 +48,19 @@ namespace API.Controllers {
             if (!result.Succeeded) return BadRequest("Failed to remove from roles.");
 
             return Ok(await _userManager.GetRolesAsync(user));
+        }
+
+
+        [Authorize(Policy = "RequiredAdminRole")]
+        [HttpDelete("delete-account/{username}")]
+        public async Task<ActionResult> DeleteAccount(string username) {
+            var user = await _uow.UserRepository.GetUserByUsernameAsync(username);
+
+            if (user == null) return NotFound();
+
+            _uow.UserRepository.DeleteUser(user);
+            if (await _uow.Complete()) return Ok();
+            return BadRequest("Problem deleting photo.");
         }
 
         [Authorize(Policy = "ModeratePhotoRole")]
