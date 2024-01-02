@@ -65,6 +65,8 @@ export class MemberListComponent implements OnInit {
 
   applyFilters() {
     if (this.userParams) {
+      if (this.userParams.minAge == null) this.userParams.minAge = 18;
+      if (this.userParams.maxAge == null) this.userParams.maxAge = 99;
       this.userParams.pageNumber = 1;
       this.memberService.setUserParams(this.userParams);
     }

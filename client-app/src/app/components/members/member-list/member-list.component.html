@@ -54,9 +54,9 @@
                 <label class="col-form-label pl-1 pr-2">Min: </label>
                 <input
                   type="number"
-                  maxlength="3"
+                  onKeyPress="if(this.value.length==3) return false;"
                   class="form-control ps-1"
-                  style="width: 70px"
+                  style="width: 65px"
                   name="minAge"
                   [(ngModel)]="userParams.minAge"
                 />
@@ -65,9 +65,9 @@
                 <label class="col-form-label pl-1 pr-1">Max: </label>
                 <input
                   type="number"
-                  maxlength="3"
+                  onKeyPress="if(this.value.length==3) return false;"
                   class="form-control ps-1"
-                  style="width: 70px"
+                  style="width: 65px"
                   name="maxAge"
                   [(ngModel)]="userParams.maxAge"
                 />
