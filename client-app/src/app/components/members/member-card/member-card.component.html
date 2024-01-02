@@ -24,8 +24,9 @@
         </h6>
         <p class="card-text text-muted text-center">{{member.city}}, {{member.country}}</p>
         <ul class="list-inline text-center">
-          <span class="badge badge-info mr-1" *ngIf="member.gender == 'male'">{{member.gender}}</span>
-          <span class="badge badge-secondary mr-1" *ngIf="member.gender == 'female'">{{member.gender}}</span>
+          <span class="badge badge-info mr-1" *ngIf="member.gender == 'male'">{{member.gender | titlecase}}</span>
+          <span class="badge badge-secondary mr-1" *ngIf="member.gender == 'female'">{{member.gender | titlecase}}</span>
+          <span class="badge badge-warning mr-1" *ngIf="member.gender == 'other'">{{member.gender | titlecase}}</span>
         </ul>
     </div>
 </div>

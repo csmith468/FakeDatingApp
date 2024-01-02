@@ -20,6 +20,10 @@
           <p>{{ member.age }}</p>
         </div>
         <div>
+          <strong>Gender: </strong>
+          <p>{{ member.gender | titlecase }}</p>
+        </div>
+        <div>
           <strong>Last Active: </strong>
           <p>{{member.lastActive | timeago}}</p>
         </div>

@@ -24,8 +24,12 @@
             <p>{{ member.age }}</p>
           </div>
           <div>
+            <strong>Gender: </strong>
+            <p>{{ member.gender | titlecase }}</p>
+          </div>
+          <div>
             <strong>Last Active: </strong>
-            <p>{{member.lastActive | timeago}}</p>
+            <p>{{member.lastActive | timeago }}</p>
           </div>
           <div>
             <strong>Member Since: </strong>
@@ -45,6 +49,8 @@
                 <div class="d-flex flex-row align-items-center">
                     <label for="city" class="label-form-custom">City:</label>
                     <input type="text" [(ngModel)]="member.city" name="city" class="form-control mx-2">
+                </div>
+                <div class="d-flex flex-row align-items-center">
                     <label for="country" class="label-form-custom">State:</label>
                     <!-- <input type="text" [(ngModel)]="member.country" name="country" class="form-control mx-2"> -->
                     <select class="custom-select" id="country" name="country" [(ngModel)]="member.country" >
@@ -102,6 +108,14 @@
                         <option value="WV">West Virginia</option>
                         <option value="WY">Wyoming</option>
                     </select>
+                </div>
+                <h5 class="mt-2">Gender </h5>
+                <div class="row align-items-center">
+                  <div class="mb-3">
+                    <input type="radio" value="female" name="gender" [(ngModel)]="member.gender" class="ml-1 mr-1">Female
+                    <input type="radio" value="male" name="gender" [(ngModel)]="member.gender" class="ml-3 mr-1">Male
+                    <input type="radio" value="other" name="gender" [(ngModel)]="member.gender" class="ml-3 mr-1">Other
+                  </div>
                 </div>
                 <p></p><h5>Description</h5>
                 <textarea class="form-control" 
