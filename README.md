@@ -39,6 +39,7 @@ This fake dating website was built through the following Udemy course: https://w
     - Members page adjusts number of members per row based on window size and if filter panel is visible
     - Navigation bar collapses links into menu dropdown, then removes "Welcome" as window size decreases
   - Collapsible filter panel in members list
+  - Collapsible member info panel in member edit and member view pages
   - New UI for messaging
   - Extra client-side password validation during registration
   - Gender tag in members list page

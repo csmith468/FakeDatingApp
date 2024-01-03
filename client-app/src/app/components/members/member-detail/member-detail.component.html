@@ -1,5 +1,12 @@
 <div class="row">
   <div class="col-5">
+    <button *ngIf="!panelVisible" class="btn btn-info" (click)="changePanelVisible()">Show Info</button>
+    <button *ngIf="panelVisible" class="btn btn-info" (click)="changePanelVisible()">Hide Info</button>
+  </div>
+  <div class="col-7">
+    <h1>{{ member.knownAs }}'s Profile</h1>
+  </div>
+  <div class="col-5" *ngIf="panelVisible">
     <div class="card">
       <img
         src="{{ member.photoUrl || './assets/user.png' }}"
@@ -40,7 +47,7 @@
       </div>
     </div>
   </div>
-  <div class="col-7">
+  <div class="col-7" [ngClass]="panelVisible ? 'col-7' : 'col-12'">
     <tabset class="member-tabset" #memberTabs>
       <tab heading="About {{member.knownAs}}" (selectTab)="onTabActivated($event)">
         <h4>Description</h4>

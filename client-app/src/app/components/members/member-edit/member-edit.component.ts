@@ -21,6 +21,7 @@ export class MemberEditComponent implements OnInit {
   }
   member: Member | undefined;
   user: User | null = null;
+  panelVisible = true;
 
   constructor(private accountService: AccountService, private memberService: MembersService,
       private toastr: ToastrService) 
@@ -48,5 +49,9 @@ export class MemberEditComponent implements OnInit {
         this.editForm?.reset(this.member);
       }
     })
+  }
+
+  changePanelVisible() {
+    this.panelVisible = !this.panelVisible;
   }
 }

@@ -33,6 +33,7 @@ export class MemberDetailComponent implements OnInit, OnDestroy {
   activeTab?: TabDirective;
   messages: Message[] = [];
   user?: User;
+  panelVisible = true;
 
   constructor(private accountService: AccountService, private route: ActivatedRoute,
     private messageService: MessageService, public presenceService: PresenceService) {
@@ -94,6 +95,10 @@ export class MemberDetailComponent implements OnInit, OnDestroy {
     for (const photo of this.member.photos) {
       this.images.push(new ImageItem({src: photo.url, thumb:photo.url}));
     }
+  }
+
+  changePanelVisible() {
+    this.panelVisible = !this.panelVisible;
   }
 
 }

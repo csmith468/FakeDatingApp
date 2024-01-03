@@ -1,11 +1,14 @@
 .img-thumbnail {
-    margin: 25px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
     width: 85%;
     height: 85%;
 }
 
 .card-body {
-    padding: 0 25px;
+    padding: 0 20px 0 20px;
 }
 
 .card-footer {
