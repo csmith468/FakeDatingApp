@@ -13,11 +13,12 @@
           <a class="dropdown-item" routerLink="/lists">Lists</a>
           <a class="dropdown-item" routerLink="/messages">Messages</a>
           <a class="dropdown-item" routerLink="/errors">Errors</a>
+          <a class="dropdown-item" routerLink="/admin">Admin</a>
         </ng-container>
         <div *ngIf="!(accountService.currentUser$ | async) as user">
           <a class="dropdown-item" routerLink="/register">Register</a>
         </div>
-        <a *appHasRole="['Admin', 'Moderator']" class="dropdown-item" routerLink="/admin">Admin</a>
+        <!-- <a *appHasRole="['Admin', 'Moderator']" class="dropdown-item" routerLink="/admin">Admin</a> -->
       </div>
     </div>
     <a class="navbar-brand" routerLink="/" routerLinkActive="active">Fake Dating App</a>
@@ -39,7 +40,8 @@
           <li class="nav-item">
             <a class="nav-link" routerLink="/errors" routerLinkActive="active">Errors</a>
           </li>
-          <li *appHasRole="['Admin', 'Moderator']" class="nav-item">
+          <!-- <li *appHasRole="['Admin', 'Moderator']" class="nav-item"> -->
+          <li class="nav-item">
             <a class="nav-link" routerLink="/admin" routerLinkActive="active">Admin</a>
           </li>
         </ng-container>

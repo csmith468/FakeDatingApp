@@ -47,6 +47,7 @@ import { SharedModule } from './helpers/modules/shared.module';
 
 // services
 import { CustomRouteReuseStrategy } from './helpers/services/customRouteReuseStrategy';
+import { NotHasRoleDirective } from './helpers/directives/not-has-role.directive';
 
 
 @NgModule({
@@ -73,7 +74,8 @@ import { CustomRouteReuseStrategy } from './helpers/services/customRouteReuseStr
     PhotoManagementComponent,
     RolesModalComponent,
     ConfirmDialogComponent,
-    AboutComponent
+    AboutComponent,
+    NotHasRoleDirective
   ],
   imports: [
     BrowserModule,

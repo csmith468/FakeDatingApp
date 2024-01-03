@@ -28,7 +28,8 @@ const routes: Routes = [
       {path: 'member/edit', component: MemberEditComponent, canDeactivate: [preventUnsavedChangesGuard]},
       {path: 'lists', component: ListsComponent},
       {path: 'messages', component: MessagesComponent},
-      {path: 'admin', component: AdminPanelComponent, canActivate: [adminGuard]},
+      {path: 'admin', component: AdminPanelComponent}, // set to view-only if not admin, no longer using adminGuard
+      // {path: 'admin', component: AdminPanelComponent, canActivate: [adminGuard]},
     ]
   },
   {path: 'about', component: AboutComponent},

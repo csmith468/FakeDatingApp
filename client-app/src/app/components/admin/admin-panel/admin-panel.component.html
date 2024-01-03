@@ -1,15 +1,17 @@
 <h2>Admin Panel</h2>
+<p *appNotHasRole="['Admin', 'Moderator']">(View Only)</p>
+<p *appNotHasRole="['Admin', 'Moderator']">This is visible for demonstration purposes. Only admins and moderators may take action on this page.</p>
 <div class="tab-panel">
     <tabset class="member-tabset">
-        <tab heading="User Management" *appHasRole="['Admin']">
+        <tab heading="User Management"><!--  *appHasRole="['Admin']"> -->
             <div class="container">
                 <app-user-management></app-user-management>
             </div>
         </tab>
-        <tab heading="Photo Management" *appHasRole="['Admin', 'Moderator']">
+        <!-- <tab heading="Photo Management"> *appHasRole="['Admin', 'Moderator']">
             <div class="container">
                 <app-photo-management></app-photo-management>
             </div>
-        </tab>
+        </tab> -->
     </tabset>
 </div>

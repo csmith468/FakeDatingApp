@@ -19,4 +19,9 @@ export class AdminService {
     return this.http.post<string[]>(this.baseUrl + 'admin/edit-roles/' 
       + username  + '?roles=' + roles, {});
   }
+
+  deleteAccount(username: string) {
+    console.log(this.baseUrl + 'admin/delete-account/' + username)
+    return this.http.delete(this.baseUrl + 'admin/delete-account/' + username);
+  }
 }
