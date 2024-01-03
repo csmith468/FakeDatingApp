@@ -27,6 +27,9 @@ namespace API.Data {
             if (userParams.Gender != "any") {
                 query = query.Where(u => u.Gender == userParams.Gender);
             }
+            if (userParams.PhotoRequired) {
+                query = query.Where(u => u.Photos.Count > 0);
+            }
             
             var minDob = DateOnly.FromDateTime(DateTime.Today.AddYears(-userParams.MaxAge - 1)); //oldest
             var maxDob = DateOnly.FromDateTime(DateTime.Today.AddYears(-userParams.MinAge)); //youngest

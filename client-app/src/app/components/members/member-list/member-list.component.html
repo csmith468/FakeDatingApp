@@ -48,6 +48,15 @@
             </select>
           </section>
           <section class="mb-3">
+            <h5 class="text-danger pl-2">Photo</h5>
+            <input type="checkbox" 
+              name="photoRequired" 
+              id="photoRequired" 
+              (change)="applyFilters()"
+              [(ngModel)]="userParams.photoRequired">
+            <label class="col-form-label pl-1 pr-2" for="photoRequired">Required</label>
+          </section>
+          <section class="mb-3">
             <h5 class="text-danger pl-2">Age Range</h5>
             <div class="row">
               <div class="d-flex pb-3">
