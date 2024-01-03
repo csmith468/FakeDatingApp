@@ -44,8 +44,13 @@ This fake dating website was built through the following Udemy course: https://w
   - Gender tag in members list page
   - Home page shows register or members link depending on if logged in
   - Custom Bootswatch theme
+  - View-only admin page for members as demonstration
+  - Admins may delete users
+  - New filter functionality listed below
 - **Back-End**
   - Edit gender after registration
   - Sort members by age asc/desc
+  - Added filter for if member has photo
+  - Admins can delete users/accounts
     
 I'm continuing to work on this to improve my skills so check back in for more updates!
