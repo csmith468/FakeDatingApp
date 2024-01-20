@@ -34,7 +34,7 @@ export class RegisterComponent {
       city: ['', Validators.required],
       country: ['', Validators.required],
       password: ['', [
-        Validators.required, Validators.minLength(4), Validators.maxLength(8), this.hasNumber(),
+        Validators.required, Validators.minLength(6), Validators.maxLength(64), this.hasNumber(),
           this.hasUpper(), this.hasLower()]],
       confirmPassword: ['', [Validators.required, this.matchValues('password')]],
     });

@@ -6,7 +6,7 @@
       class="form-control" 
       [formControl]="control"
       placeholder={{label}}
-      id="floatingText" 
+      id="floatingText_{{label}}" 
   >
   <div class="invalid-feedback" *ngIf="control.errors?.['required']">
       Please enter a {{label}}.
@@ -26,5 +26,5 @@
     Passwords must contain at least one uppercase letter, one lowercase letter, and one number.
 </div>
   <div class="valid-feedback"></div>
-  <label for="floatingText">{{label}}</label>
+  <label for="floatingText_{{label}}">{{label}}</label>
 </div>
